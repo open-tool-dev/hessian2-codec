@@ -15,7 +15,7 @@ std::unique_ptr<RefObject> Decoder::decode() {
   if (static_cast<uint32_t>(*ref) >= values_ref_.size()) {
     return nullptr;
   }
-  return std::make_unique<RefObject>(values_ref_[*ref]);
+  return absl::make_unique<RefObject>(values_ref_[*ref]);
 }
 
 template <>

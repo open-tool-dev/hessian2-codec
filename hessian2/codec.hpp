@@ -55,11 +55,11 @@ class Decoder {
 
   // Use default StringReader implement
   Decoder(absl::string_view input)
-      : reader_(std::make_unique<StringReader>(input)) {}
+      : reader_(absl::make_unique<StringReader>(input)) {}
   Decoder(ReaderPtr&& read) : reader_(std::move(read)) {}
   template <typename T>
   std::unique_ptr<T> decode() {
-    auto t = std::make_unique<T>();
+    auto t = absl::make_unique<T>();
     Hessian2::FromHessian(*t, *this);
     return t;
   }
@@ -112,7 +112,7 @@ class Encoder {
   };
   // Use default StringWriter implement
   Encoder(std::string& output)
-      : writer_(std::make_unique<StringWriter>(output)) {}
+      : writer_(absl::make_unique<StringWriter>(output)) {}
   Encoder(WriterPtr&& writer) : writer_(std::move(writer)) {}
   template <typename T>
   bool encode(const T& o) {
