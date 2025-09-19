@@ -16,7 +16,7 @@ std::unique_ptr<Object::TypeRef> Decoder::decode() {
       return nullptr;
     }
     types_ref_.push_back(*type_str);
-    return std::make_unique<Object::TypeRef>(*type_str);
+    return absl::make_unique<Object::TypeRef>(*type_str);
   }
 
   // int32_t
@@ -29,7 +29,7 @@ std::unique_ptr<Object::TypeRef> Decoder::decode() {
   if (types_ref_.size() <= ref) {
     return nullptr;
   } else {
-    return std::make_unique<Object::TypeRef>(types_ref_[ref]);
+    return absl::make_unique<Object::TypeRef>(types_ref_[ref]);
   }
 
   return nullptr;
