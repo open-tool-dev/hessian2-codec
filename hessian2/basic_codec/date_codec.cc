@@ -13,13 +13,13 @@ std::unique_ptr<T> readDate(ReaderPtr &reader) {
       if (reader->byteAvailable() < 4) {
         return nullptr;
       }
-      return std::make_unique<T>(std::chrono::duration_cast<T>(
+      return absl::make_unique<T>(std::chrono::duration_cast<T>(
           std::chrono::minutes(reader->readBE<int32_t>().second)));
     case 0x4a:
       if (reader->byteAvailable() < 8) {
         return nullptr;
       }
-      return std::make_unique<T>(std::chrono::duration_cast<T>(
+      return absl::make_unique<T>(std::chrono::duration_cast<T>(
           std::chrono::milliseconds(reader->readBE<int64_t>().second)));
   }
   return nullptr;
