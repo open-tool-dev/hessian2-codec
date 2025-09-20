@@ -7,7 +7,7 @@ cc_library(
     srcs = [
         "byte_order.h",
     ],
-    copts = DEFAULT_COPTS,
+    copts = DEFAULT_COPTS + ["-std=c++17"],
     deps = [
     ],
 )
@@ -17,7 +17,7 @@ cc_library(
     srcs = [
         "object.hpp",
     ],
-    copts = DEFAULT_COPTS,
+    copts = DEFAULT_COPTS + ["-std=c++17"],
     deps = [
         "//common:common_lib",
         "//common:macros_lib",
@@ -34,7 +34,7 @@ cc_library(
         "reader.cc",
         "reader.hpp",
     ],
-    copts = DEFAULT_COPTS,
+    copts = DEFAULT_COPTS + ["-std=c++17"],
     deps = [
         ":byte_order_lib",
         "//common:common_lib",
@@ -46,7 +46,7 @@ cc_library(
     srcs = [
         "writer.hpp",
     ],
-    copts = DEFAULT_COPTS,
+    copts = DEFAULT_COPTS + ["-std=c++17"],
     deps = [
         ":byte_order_lib",
         "//common:common_lib",
@@ -59,7 +59,7 @@ cc_library(
     srcs = [
         "string_reader.hpp",
     ],
-    copts = DEFAULT_COPTS,
+    copts = DEFAULT_COPTS + ["-std=c++17"],
     deps = [
         ":reader_lib",
         "@com_google_absl//absl/strings",
@@ -71,7 +71,7 @@ cc_library(
     srcs = [
         "string_writer.hpp",
     ],
-    copts = DEFAULT_COPTS,
+    copts = DEFAULT_COPTS + ["-std=c++17"],
     deps = [
         ":writer_lib",
         "@com_google_absl//absl/strings",
@@ -83,7 +83,7 @@ cc_test(
     srcs = [
         "string_reader_unittests.cc",
     ],
-    copts = TEST_COPTS,
+    copts = TEST_COPTS + ["-std=c++17"],
     deps = [
         ":string_reader_lib",
         "//common:common_lib",
@@ -96,7 +96,7 @@ cc_test(
     srcs = [
         "string_writer_unittests.cc",
     ],
-    copts = TEST_COPTS,
+    copts = TEST_COPTS + ["-std=c++17"],
     deps = [
         ":string_writer_lib",
         "//common:common_lib",
@@ -109,7 +109,7 @@ cc_library(
     srcs = [
         "codec.cc",
     ],
-    copts = DEFAULT_COPTS,
+    copts = DEFAULT_COPTS + ["-std=c++17"],
     deps = [
         ":codec_lib",
         "//hessian2/basic_codec:def_ref_codec_lib",
@@ -124,7 +124,7 @@ cc_library(
     srcs = [
         "codec.hpp",
     ],
-    copts = DEFAULT_COPTS,
+    copts = DEFAULT_COPTS + ["-std=c++17"],
     deps = [
         ":object_lib",
         ":string_reader_lib",
@@ -139,7 +139,7 @@ cc_test(
     srcs = [
         "object_unittests.cc",
     ],
-    copts = TEST_COPTS,
+    copts = TEST_COPTS + ["-std=c++17"],
     deps = [
         ":object_lib",
         "@com_google_googletest//:gtest_main",
