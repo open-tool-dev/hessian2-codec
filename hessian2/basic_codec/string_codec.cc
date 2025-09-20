@@ -397,7 +397,7 @@ bool readChunkString(std::string &output, bool &has_surrogate, Reader &reader,
 
 template <>
 std::unique_ptr<std::string> Decoder::decode() {
-  auto out = std::make_unique<std::string>();
+  auto out = absl::make_unique<std::string>();
   bool has_surrogate = false;
 
   if (!decodeStringWithReader(*out.get(), has_surrogate, *reader_.get())) {
