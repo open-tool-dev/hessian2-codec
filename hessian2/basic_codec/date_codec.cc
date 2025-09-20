@@ -6,7 +6,7 @@ namespace {
 
 template <typename T>
 std::unique_ptr<T> readDate(ReaderPtr &reader) {
-  auto out = std::make_unique<T>();
+  auto out = absl::make_unique<T>();
   uint8_t code = reader->read<uint8_t>().second;
   switch (code) {
     case 0x4b:
