@@ -5,8 +5,8 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 git_repository(
     name = "com_alibaba_hessian2_codec",
-    commit = "05e29382e6c63f77d4cf84e212613b528ba98e0a",
-    remote = "https://github.com/alibaba/hessian2-codec.git",
+    commit = "2f747b952257126c0ecbee5261911c1e482ac63e",
+    remote = "https://github.com/open-tool-dev/hessian2-codec.git",
 )
 
 load("@com_alibaba_hessian2_codec//bazel:third_party_repositories.bzl", "load_third_party_repositories")
