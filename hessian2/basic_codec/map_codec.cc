@@ -9,7 +9,7 @@ std::unique_ptr<TypedMapObject> Decoder::decode() {
   std::string type;
   Object::TypedMap obj_map;
 
-  auto result = std::make_unique<TypedMapObject>();
+  auto result = absl::make_unique<TypedMapObject>();
   values_ref_.push_back(result.get());
   auto ret = reader_->read<uint8_t>();
   ABSL_ASSERT(ret.first);
@@ -58,7 +58,7 @@ std::unique_ptr<UntypedMapObject> Decoder::decode() {
   std::string type;
   Object::UntypedMap obj_map;
 
-  auto result = std::make_unique<UntypedMapObject>();
+  auto result = absl::make_unique<UntypedMapObject>();
   values_ref_.push_back(result.get());
   auto ret = reader_->read<uint8_t>();
   ABSL_ASSERT(ret.first);
