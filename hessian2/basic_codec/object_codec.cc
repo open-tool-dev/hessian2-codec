@@ -10,7 +10,7 @@ std::unique_ptr<NullObject> Decoder::decode() {
   }
 
   ABSL_ASSERT(ret.second == 'N');
-  return std::make_unique<NullObject>();
+  return absl::make_unique<NullObject>();
 }
 
 template <>
@@ -79,13 +79,13 @@ std::unique_ptr<Object> Decoder::decode() {
     // Null Object
     case 'N': {
       auto ret = decode<NullObject>();
-      return ret == nullptr ? nullptr : std::make_unique<NullObject>();
+      return ret == nullptr ? nullptr : absl::make_unique<NullObject>();
     }
     // Bool
     case 0x46:
     case 0x54: {
       auto ret = decode<bool>();
-      return ret == nullptr ? nullptr : std::make_unique<BooleanObject>(*ret);
+      return ret == nullptr ? nullptr : absl::make_unique<BooleanObject>(*ret);
     }
 
     // Date
