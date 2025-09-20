@@ -8,7 +8,7 @@ namespace Hessian2 {
 template <>
 std::unique_ptr<ClassInstanceObject> Decoder::decode() {
   Object::ClassInstance instance;
-  auto result = std::make_unique<ClassInstanceObject>();
+  auto result = absl::make_unique<ClassInstanceObject>();
   values_ref_.push_back(result.get());
   auto ret = reader_->peek<uint8_t>();
 
