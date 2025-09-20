@@ -92,7 +92,7 @@ std::unique_ptr<Object> Decoder::decode() {
     case 0x4a:
     case 0x4b: {
       auto ret = decode<std::chrono::milliseconds>();
-      return ret == nullptr ? nullptr : std::make_unique<DateObject>(*ret);
+      return ret == nullptr ? nullptr : absl::make_unique<DateObject>(*ret);
     }
 
     // Double
@@ -103,7 +103,7 @@ std::unique_ptr<Object> Decoder::decode() {
     case 0x5f:
     case 'D': {
       auto ret = decode<double>();
-      return ret == nullptr ? nullptr : std::make_unique<DoubleObject>(*ret);
+      return ret == nullptr ? nullptr : absl::make_unique<DoubleObject>(*ret);
     }
 
     // Typed list
@@ -190,7 +190,7 @@ std::unique_ptr<Object> Decoder::decode() {
       code == 0x53) {
     auto ret = decode<std::string>();
     return ret == nullptr ? nullptr
-                          : std::make_unique<StringObject>(std::move(ret));
+                          : absl::make_unique<StringObject>(std::move(ret));
   }
 
   // Binary
@@ -198,21 +198,21 @@ std::unique_ptr<Object> Decoder::decode() {
       code == 0x41 || code == 0x42) {
     auto ret = decode<std::vector<uint8_t>>();
     return ret == nullptr ? nullptr
-                          : std::make_unique<BinaryObject>(std::move(ret));
+                          : absl::make_unique<BinaryObject>(std::move(ret));
   }
 
   // Long
   if ((code >= 0x38 && code <= 0x3f) || (code >= 0xd8 && code <= 0xef) ||
       code >= 0xf0 || code == 0x59 || code == 0x4c) {
     auto ret = decode<int64_t>();
-    return ret == nullptr ? nullptr : std::make_unique<LongObject>(*ret);
+    return ret == nullptr ? nullptr : absl::make_unique<LongObject>(*ret);
   }
 
   // int
   if (code == 0x49 || (code >= 0x80 && code <= 0xbf) ||
       (code >= 0xc0 && code <= 0xcf) || (code >= 0xd0 && code <= 0xd7)) {
     auto ret = decode<int32_t>();
-    return ret == nullptr ? nullptr : std::make_unique<IntegerObject>(*ret);
+    return ret == nullptr ? nullptr : absl::make_unique<IntegerObject>(*ret);
   }
 
   return nullptr;
