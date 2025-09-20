@@ -6,10 +6,10 @@ template <>
 std::unique_ptr<bool> Decoder::decode() {
   uint8_t code = reader_->read<uint8_t>().second;
   if (code == 0x46) {
-    return std::make_unique<bool>(false);
+    return absl::make_unique<bool>(false);
   }
   if (code == 0x54) {
-    return std::make_unique<bool>(true);
+    return absl::make_unique<bool>(true);
   }
   error_pos_ = offset();
   error_code_ = ErrorCode::UNEXPECTED_TYPE;
