@@ -14,7 +14,7 @@ void writeBEDouble(WriterPtr &writer, const double &value) {
 
 template <>
 std::unique_ptr<double> Decoder::decode() {
-  auto out = std::make_unique<double>();
+  auto out = absl::make_unique<double>();
   uint8_t code = reader_->readBE<uint8_t>().second;
   switch (code) {
     // ::= x5b                   # 0.0
@@ -97,7 +97,7 @@ bool Encoder::encode(const double &value) {
 // ::= [xd0-xd7] b1 b0       # -x40000 to x3ffff
 template <>
 std::unique_ptr<int32_t> Decoder::decode() {
-  auto out = std::make_unique<int32_t>();
+  auto out = absl::make_unique<int32_t>();
   uint8_t code = reader_->readBE<uint8_t>().second;
 
   // ::= [x80-xbf]             # -x10 to x3f
@@ -193,7 +193,7 @@ bool Encoder::encode(const int32_t &data) {
 // ::= x59 b3 b2 b1 b0       # 32-bit integer cast to long
 template <>
 std::unique_ptr<int64_t> Decoder::decode() {
-  auto out = std::make_unique<int64_t>();
+  auto out = absl::make_unique<int64_t>();
   uint8_t code = reader_->readBE<uint8_t>().second;
   switch (code) {
     // ::= [xd8-xef]             # -x08 to x0f
