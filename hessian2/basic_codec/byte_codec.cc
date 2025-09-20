@@ -13,7 +13,7 @@ constexpr size_t CHUNK_SIZE = 1024;
 // ::= [x34-x37] <binary-data>           # binary data of length 0-1023
 template <>
 std::unique_ptr<std::vector<uint8_t>> Decoder::decode() {
-  auto out = std::make_unique<std::vector<uint8_t>>();
+  auto out = absl::make_unique<std::vector<uint8_t>>();
   if (!decodeBytesWithReader(*out.get(), reader_)) {
     return nullptr;
   }
