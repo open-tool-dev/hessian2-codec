@@ -11,7 +11,7 @@ std::unique_ptr<TypedListObject> Decoder::decode() {
   std::string type;
   Object::TypedList obj_list;
 
-  auto result = std::make_unique<TypedListObject>();
+  auto result = absl::make_unique<TypedListObject>();
   values_ref_.push_back(result.get());
 
   auto ret = reader_->read<uint8_t>();
@@ -108,7 +108,7 @@ template <>
 std::unique_ptr<UntypedListObject> Decoder::decode() {
   Object::UntypedList obj_list;
 
-  auto result = std::make_unique<UntypedListObject>();
+  auto result = absl::make_unique<UntypedListObject>();
   values_ref_.push_back(result.get());
 
   auto ret = reader_->read<uint8_t>();
