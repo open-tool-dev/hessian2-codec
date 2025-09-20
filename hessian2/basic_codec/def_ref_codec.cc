@@ -55,7 +55,7 @@ std::unique_ptr<Object::Definition> Decoder::decode() {
     return nullptr;
   }
 
-  return std::make_unique<Object::Definition>(def);
+  return absl::make_unique<Object::Definition>(def);
 }
 
 // TODO(tianqian.zyf:) Avoid copying definitions
